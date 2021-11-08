@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="ch3">
+    <head>
+        <title>Chapter 3.2</title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="nav">
+            <a id="back" href="Chapter 3.html">← Chapter 3</a>
+            <a id="next" href="Chapter 3.3.html">Chapter 3.3 →</a>
+        </div>
+
+        <h1 class="ch3">Chapter 3: Storage Devices and Media</h1>
+        <h2 class="ch3">3.2 Types of access</h2>
+
+        <ul>    
+            <li><h2><a href="#32">Types of access</a></h2></li>
+            <ul>
+                <li><h3><a href="#321">Serial access</a></h3></li>
+                <li><h3><a href="#322">Direct access</a></h3></li>
+            </ul>
+        </ul>
+
+        <h2 id="32">3.2 Types of access</h2>
+        <p>A number of secondary storage devices are discussed in Section 3.3. The way data is stored and read by each of these devices is very different, however.</p>
+        <p>This section briefly describes the two main methods of accessing data. It is important to understand three new terms here:</p>
+        <ul>
+            <li>field</li>
+            <li>record</li>
+            <li>file</li>
+        </ul>
+        <p>Suppose we are storing data about 20 cars in a car showroom. Data about each car - such as its colour, engine size, type of fuel, number of doors and whether it's new or used - are stored in an allocated space known as a <strong>field</strong>. All of the data about car 1, for example, is known as the <strong>record</strong> for that car. Putting all the data together for all 20 cars produces a <strong>file</strong> like this.</p>
+        
+        <table class="table">
+            <tr>
+                <th>field 1</th>
+                <th>field 2</th>
+                <th>field 3</th>
+                <th>field 4</th>
+                <th>field 5</th>
+                <th>field 6</th>
+            </tr>
+            <tr class="tr1">
+                <td>car 1</td>
+                <td>red</td>
+                <td>1.5 litres</td>
+                <td>petrol</td>
+                <td>3 doors</td>
+                <td>new</td>
+                <td class="record">record 1</td>
+            </tr>
+            <tr class="tr2">
+                <td>car 2</td>
+                <td>blue</td>
+                <td>1.3 litres</td>
+                <td>petrol</td>
+                <td>5 doors</td>
+                <td>used</td>
+                <td class="record">record 2</td>
+            </tr>
+            <tr class="tr3">
+                <td>car 3</td>
+                <td>green</td>
+                <td>2.2 litres</td>
+                <td>diesel</td>
+                <td>5 doors</td>
+                <td>used</td>
+                <td class="record">record 3</td>
+            </tr>
+            <tr class="tr4">
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+            <tr class="tr5">
+                <td>car 20</td>
+                <td>white</td>
+                <td>1.6 litres</td>
+                <td>petrol</td>
+                <td>2 doors</td>
+                <td>new</td>
+                <td class="record">record 20</td>
+            </tr>
+        </table>
+        
+        <h3 id="321">3.2.1 Serial access</h3>
+        <p>When using <strong>serial access</strong> it is necessary to start at the beginning of the file and then access each record in turn until the required record is found. In the example above, to find the record for car 15, it is necessary to first read all of the preceding records (that is, 1 to 14) until the required record is located.</p>
+        <p class="indent">It is primarily used on magnetic tape systems and is essentially a very slow form of data access. It is used in application where speed of access, or where the order in which the data is accessed, isn't important (for example in utility billing, clearing bank cheques or producing pay slips).</p>
+        <p class="indent">When the original magnetic tape (called the <strong>master file</strong>) needs <strong>updating</strong>, an additional tape (called a <strong>transaction file</strong>) is required. The transaction file contains all the new data to allow the master file to be updated (although the transaction file is very often another tape, the new data could in fact be stored on a different medium). The updated tape is referred to as the new master file. When using tapes, it is essential that the records on both master file and transaction file are sorted in the same order )for example, sorted by customer number if it is a billing application - the field used to sort the records is often referred to as a <strong>key field</strong>).</p>
+        <p class="indent">This is and example of how a master file (MF) can be updated using a Transaction File (TF). The scenario here is a book shop that sells books. All of the books held in stock are stored on the MF in ISBN order - the ISBN acts as the key field for each record (each different book title will have its own record made up of the ISBN, title of book, author, genre, cost price and selling price). All the changes during the day will be stored on the TF - if a book sells, if new books come in, if a book is out of print, and so on. At the end of each day, the MF is updated using the new data stored on the TF. The basic steps in the update process are shown below:</p>
+        <ul>
+            <li>at the end of the day, the TF is sorted in the same order as the MF (this will be done using the ISBN which is known here as the key field)</li>
+            <li>a new master file (NMF) is created to store the updated records of the books in the shop</li>
+            <li>the first record in the TF is then read and the first record in the MF is also read
+                <ul>
+                    <li>the two records are compared with each other</li>
+                    <li>if the key field on the MF < the key field on the TF, then no transactions took place and the MF record is written to the NMF; a new MF record is now read</li>
+                    <li>if the key field on the MF = the key field on the TF, then a transaction took place and the new record from the TF is written to the NMF; the next record from both the MF and TF are now read</li>
+                    <li>if the transaction file indicates a deletion then the record is simply not written to the NMF and a new record from each file is read</li>
+                    <li>if the key field on the MF is greater than the key field on the TF, then the record doesn't yet exist and a new record is created on the NMF and the record is written from the TF to the NMF; a new TF record is now read</li>
+                </ul>
+            </li>
+            <li>the process is repeated until the end of the MF</li>
+            <li>finally, any remaining records on the TF are written to the NMF.</li>
+        </ul>
+        
+        <p><strong>Example</strong> <br>
+        The Master File (MF) contains the following records with key fields shown:</p>
+        <table class="ex">
+            <tr class="kf1">
+                <td class="kf1">1</td>
+                <td class="kf1">2</td>
+                <td class="kf1">3</td>
+                <td class="kf1">4</td>
+                <td class="kf1">6</td>
+                <td class="kf1">8</td>
+                <td class="kf1">9</td>
+            </tr>
+        </table>
+
+        <p>The Transaction File (TF) contains the following records with key fields shown:</p>
+        <table class="ex">
+            <tr class="kf2">
+                <td class="kf2">1</td>
+                <td class="kf2">2</td>
+                <td class="kf2">4</td>
+                <td class="kf2">5</td>
+                <td class="kf2">7</td>
+                <td class="kf2">8</td>
+                <td class="kf2">10</td>
+            </tr>
+        </table>
+
+        <p>The first record from each file is read. The key fields both match, so the record with key field 1 is written from the TF to the new master file (NMF):</p>
+        <table class="ex">
+            <tr class="kf3">
+                <td class="kf3">1</td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+                <td class="kf3s"> </td>
+            </tr>
+        </table>
+
+        <p>The second record is then read from the MF and TF; again the keys are equal so the record on TF with key field 2 is now written to the NMF:</p>
+        <table class="ex">
+            <tr class="kf4">
+                <td class="kf4">1</td>
+                <td class="kf4">2</td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+                <td class="kf4s"> </td>
+            </tr>
+        </table>
+
+        <p>The third record is then read from the MF and TF; this time the key fields are different (3 and 4). The MF key < the TF key, so the MF record with key 3 is now written to the NMF:</p>
+        <table class="ex">
+            <tr class="kf5">
+                <td class="kf5">1</td>
+                <td class="kf5">2</td>
+                <td class="kf5o">3</td>
+                <td class="kf5s"> </td>
+                <td class="kf5s"> </td>
+                <td class="kf5s"> </td>
+                <td class="kf5s"> </td>
+                <td class="kf5s"> </td>
+                <td class="kf5s"> </td>
+                <td class="kf5s"> </td>
+            </tr>
+        </table>
+        
+        <p>The next record from the MF is read. This time they are both 4 so the record on the TF is written to the NMF:</p>
+        <table class="ex">
+            <tr class="kf6">
+                <td class="kf6">1</td>
+                <td class="kf6">2</td>
+                <td class="kf6o">3</td>
+                <td class="kf6">4</td>
+                <td class="kf6s"> </td>
+                <td class="kf6s"> </td>
+                <td class="kf6s"> </td>
+                <td class="kf6s"> </td>
+                <td class="kf6s"> </td>
+                <td class="kf6s"> </td>
+            </tr>
+        </table>
+
+        <p>The next records from both MF and TF are read (6 and 5). The MF key is greater than the TF key, so a new record is created with key field 5. The new record is written to the NMF from the TF:</p>
+        <table class="ex">
+            <tr class="kf7">
+                <td class="kf7">1</td>
+                <td class="kf7">2</td>
+                <td class="kf7o">3</td>
+                <td class="kf7">4</td>
+                <td class="kf7">5</td>
+                <td class="kf7s"> </td>
+                <td class="kf7s"> </td>
+                <td class="kf7s"> </td>
+                <td class="kf7s"> </td>
+                <td class="kf7s"> </td>
+            </tr>
+        </table>
+
+        <p>The next record on the TF is read. Again they are different (6 and 7). The MF key < TF key, so the MF record with key 6 is now written to the NMF:</p>
+        <table class="ex">
+            <tr class="kf8">
+                <td class="kf8">1</td>
+                <td class="kf8">2</td>
+                <td class="kf8o">3</td>
+                <td class="kf8">4</td>
+                <td class="kf8">5</td>
+                <td class="kf8o">6</td>
+                <td class="kf8s"> </td>
+                <td class="kf8s"> </td>
+                <td class="kf8s"> </td>
+                <td class="kf8s"> </td>
+            </tr>
+        </table>
+
+        <p>This process continues until all the records have been checked and the final NMF emerges:</p>
+        <table class="ex">
+            <tr class="kf9">
+                <td class="kf9">1</td>
+                <td class="kf9">2</td>
+                <td class="kf9o">3</td>
+                <td class="kf9">4</td>
+                <td class="kf9">5</td>
+                <td class="kf9o">6</td>
+                <td class="kf9">7</td>
+                <td class="kf9">8</td>
+                <td class="kf9o">9</td>
+                <td class="kf9">10</td>
+            </tr>
+        </table>
+
+        <h3 id="322">3.2.2 Direct access</h3>
+        <p><strong>Direct access</strong> is used with magnetic disks, optical media and solid state media. The computer uses the key field to calculate where data should be stored. It is then able to access the data directly from the calculated position. Consequently, access is much faster than with serial access. When updating files using direct access, the old records/data are simply written over by the new records/data. It is not necessary to sort records into any specific order first.</p>
+        <p class="indent">It is used in applications where data access speed is vital (for example, in <strong>real-time</strong> operations such as controlling a chemical plant or <strong>online</strong> systems such as booking air tickets or automatic stock control).</p>
+    </body>
+</html>

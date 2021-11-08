@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html class="ch3">
+
+<head>
+    <title>Chapter 3.3</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- include images and videos -->
+    <div class="nav">
+        <a id="back" href="Chapter 3.2.html">← Chapter 3.2</a>
+        <a id="next" href="Chapter 4.html">Chapter 4 →</a>
+    </div>
+
+    <h1 class="ch3">Chapter 3: Storage Devices and Media</h1>
+    <h2 class="ch3">3.3 Secondary storage media</h2>
+
+    <ul>
+        <li>
+            <h2><a href="#33">Secondary storage media</a></h2>
+        </li>
+        <ul>
+            <li>
+                <h3><a href="#331">Magnetic storage media</a></h3>
+            </li>
+            <li>
+                <h3><a href="#332">Optical storage media</a></h3>
+            </li>
+            <li>
+                <h3><a href="#333">Solid state storage media</a></h3>
+            </li>
+        </ul>
+    </ul>
+
+    <h2 id="33">3.3 Secondary storage media</h2>
+    <p>Dating right back to the advent of the personal computer, all systems have come equipped with some form of secondary storage. When a user loads data into a computer, the information is stored temporarily in the RAM - if the computer was turned off, this data would be lost. Secondary storage devices ensure that data is stored permanently so that it can be used again at a later date. This section will consider the various types of secondary storage and the media used.</p>
+    <p class="indent">Throughout the chapter, you will notice that the term <strong>byte</strong> is used to measure the size of memory or storage. Typically, <strong>storage</strong> sizes or file sizes are measured in kilobytes (KB), megabytes (MB), gigabytes(GB) and terabytes (TB) as shown in Table 3.1.</p>
+    <table class="table31">
+        <tr class="table31">
+            <th class="table31">Storage size</th>
+            <th class="table31">Number of bytes</th>
+            <th class="table31">Number of bytes as power of 10</th>
+        </tr>
+        <tr class="table31">
+            <td class="table31">1 KB</td>
+            <td class="table31">1000 bytes</td>
+            <td class="table31">10<sup>3</sup> bytes</td>
+        </tr>
+        <tr class="table31">
+            <td class="table31">1 MB</td>
+            <td class="table31">1 000 000 bytes</td>
+            <td class="table31">10<sup>6</sup> bytes</td>
+        </tr>
+        <tr class="table31">
+            <td class="table31">1 GB</td>
+            <td class="table31">1 000 000 000 bytes</td>
+            <td class="table31">10<sup>9</sup> bytes</td>
+        </tr>
+        <tr class="table31">
+            <td class="table31">1 TB</td>
+            <td class="table31">1 000 000 000 000 bytes</td>
+            <td class="table31">10<sup>12</sup> bytes</td>
+        </tr>
+    </table>
+    <p class="tnote">Note that this is different to memory sizes as used internally in the computer, where: <br>
+    1 KB = 1024 (2<sup>10</sup>) bytes, 1 MB = 1 048 576 (2<sup>20</sup>) bytes, 1 GB = 1 073 741 824 (2<sup>30</sup>) bytes and 1 TB = 1 099 511 627 776 (2<sup>40</sup>) bytes. These values are all powers of 2.</p>
+
+    <p>This section reviews the various types of secondary storage devices available. These are either internal or external (that is, plug-in devices) to the computer.</p>
+    <p>Devices fall into the three different types of storage media:</p>
+    <ul>
+        <li>magnetic</li>
+        <li>optical</li>
+        <li>solid state.</li>
+    </ul>
+
+    <h3 id="331">3.3.1 Magnetic storage media</h3>
+    <p>Magnetic storage media depend on the magnetic properties of certain materials (iron and nickel alloys being the most common). Magnetic material is coated on the surface of a disk or tape that can be magnetised in such a way as to represent a 1 or a 0. Many hard disk drives are made up of more than one disk and these disks are known as <strong>platters</strong>. Each platter is made from glass, ceramic or aluminium coated in a nickel alloy that can be magnetised. In the case of tape, plastic that is coated in a magnetic material is used to store the data.</p>
+    <h3>Fixed/internal hard disk drive (HDD)</h3>
+    <img src="images/hdd.png" alt="hdd">
+    <p><strong>Fixed hard disk drives</strong> are available on all computers and are the main method used for data storage. On a PC this is usually a fixed hard disk with read/write heads allowing data to be written to or read from the disk surface. The disk surface is coated in a magnetic film that allows data to be stored by altering the magnetic properties to represent binary 1s or 0s (the fundamental units of computer memories). The hard disks usually store the <strong>disk operating system (DOS)</strong> and other systems software, as well as applications software and files. Applications software (such as spreadsheets and word processors) also needs a hard drive to allow them to quickly retrieve and save data.</p>
+
+    <p><strong>Uses</strong></p>
+    <ul>
+        <li>To store the operating system, systems software and working data/files</li>
+        <li>Storing applications software that needs fast retrieval and storage of data</li>
+        <li>Used in real-time systems (for example, robots, control of a chemical plant where data for the process is stored to allow real-time operations) and in online systems (for example, booking airline tickets or automatic stock control using EFTPOS, which allows immediate updating of the stock files)</li>
+        <li>Used in file servers for computer networks</li>
+    </ul>
+
+    <p><strong>Advantages</strong></p>
+    <ul>
+        <li>They have a very fast data transfer rate and fast access times to data.</li>
+        <li>They have very large memory capacities.</li>
+    </ul>
+
+    <p><strong>Disadvantages</strong></p>
+    <ul>
+        <li>Can be easily damaged if the correct shut down procedure is not carried out; this can lead to a head crash which would result in a loss of data</li>
+        <li>They have many moving parts when compared to, for example solid state drives (SSDs).</li>
+        <li>Their read/write operation can be quite noisy compared to SSDs.</li>
+    </ul>
+
+    <h3>Portable hard disk drives</h3>
+    <p>These devices work in much the same way as fixed hard disk drives but are usually connected to the computer via the <strong>USB (universal serial bus)</strong> port and can be disconnected and used on different computers. The disks are generally capable of storing more data than the euqivalent optical disk (CD, DVD and so on).</p>
+
+    <h3 id="332">3.3.2 Optical storage media</h3>
+    <h3 id="333">3.3.3 Solid state storage media</h3>
+</body>
+</html>
