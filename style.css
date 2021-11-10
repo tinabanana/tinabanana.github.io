@@ -117,10 +117,15 @@ div.nav {
     background-color: cadetblue;
     padding: 10px 10px;
     font-size: 18px;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     list-style-position: inside;
     margin-left: 0px;
-
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    position: -webkit-sticky;
 }
 
 div.nav a {
