@@ -195,7 +195,7 @@ td {
     border-collapse: collapse;
 }
 
-p.indent {
+.indent {
     text-indent: 25px;
 }
 
@@ -406,5 +406,17 @@ p.tnote {
 }
 
 img {
-    height: 200px;
+    height: 180px;
+}
+
+.t32 {
+    border-collapse: collapse;
+}
+
+th.t32 {
+    padding: 2px 10px;
+}
+
+td.t32 {
+    padding: 2px 10px;
 }
