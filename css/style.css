@@ -117,10 +117,15 @@ div.nav {
     background-color: cadetblue;
     padding: 10px 10px;
     font-size: 18px;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     list-style-position: inside;
     margin-left: 0px;
-
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    position: -webkit-sticky;
 }
 
 div.nav a {
@@ -195,7 +200,7 @@ td {
     border-collapse: collapse;
 }
 
-p.indent {
+.indent {
     text-indent: 25px;
 }
 
@@ -406,6 +411,17 @@ p.tnote {
 }
 
 img {
-    height: 200px;
-    word-wrap: break-word;
+    height: 180px;
+}
+
+.t32 {
+    border-collapse: collapse;
+}
+
+th.t32 {
+    padding: 2px 10px;
+}
+
+td.t32 {
+    padding: 2px 10px;
 }
